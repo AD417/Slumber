@@ -1,0 +1,58 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>The Wizard's Slumber</title>
+  <link rel="stylesheet" href="coolStuff/styles.css">
+</head>
+<body onload = "load()">
+  <canvas id="canvas" style="margin: 0px; padding: 0px"></canvas>
+
+  <div class="tabs">
+    <button id="tranquilTab" class="tab spaceTime" onclick="tab(1)" onload="tab(1)">Core</button>
+    <button id="knowTab" class="tab duality" onclick="tab(2)" style="display:none">Duality</button>
+    <button class="tab fadeIn" onclick="tab(3)">Options</button>
+    <button class="tab fadeIn" onclick="tab(4)">Statistics</button>
+  </div>
+
+  <div id="Main" class="tabcontent fadeIn">
+    <p>There is <span id="tranquility" class="important">0</span> Tranquility.</p>
+    <div class="tile">
+      <button id="producer0" onclick="doTask(0)"></button>
+    </div>
+    <div class="tile">
+      <button id="producer1" onclick="doTask(1)"></button>
+    </div>
+    <div class="tile">
+      <button id="producer2" onclick="doTask(2)"></button>
+    </div>
+    <div class="tile">
+      <button id="producer3" onclick="doTask(3)"></button>
+    </div>
+  </div>
+      
+  <div id="Knowledge" class="tabcontent fadeIn matter" style="display:none">
+    <p>Congrats, you beat the game, for now. Check back later!<br>
+  </div>
+
+  <div id="Options" class="tabcontent fadeIn">
+    <h3>Options</h3>
+    <button class="option" onclick="reset()"> RESET THE GAME</button>
+    <button class="option" onclick="save()">Save Game</button>
+  </div>
+
+  <div id="Statistics" class="tabcontent fadeIn">
+    <h3>Stats</h3>
+    <p>Time played: <span id=playtime>X</span></p>
+    <p>
+      STATISTICS
+    </p>
+  </div>
+
+  <script src="break_infinity.js"></script>
+  <script src="main.js"></script>
+  <script src="content/tranquility.js"></script>
+  <script src="coolStuff/format.js"></script>
+  <!--<script src="core/format.js"></script>
+  <script src="render/canvas.js"></script>-->
+</body>
+</html>

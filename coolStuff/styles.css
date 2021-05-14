@@ -1,0 +1,194 @@
+
+:root { /*these are the intended maximum values.*/
+    --hope: hsl(200, 100%, 50%);
+    --hopeBack: hsl(240, 100%, 20%);
+
+    --despair: hsl(270, 50%, 60%);
+    --despairBack: hsl(270, 100%, 20%);
+
+}
+
+* { 
+    color: white;
+    background-color: none;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: monospace;
+    outline: none;
+}
+
+p {
+    text-shadow: 0 0 10px black;
+}
+body {
+    overflow-x: auto;
+    max-width: 100%;
+    padding: 0px;
+    background-image: linear-gradient(rgb(32,32,32), black);
+}
+
+#canvas {
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    z-index: -100;
+    overflow: hidden;
+}
+
+button {
+    background-color: black;
+}
+
+.tab {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border: 0.2rem solid rgb(128, 128, 128);
+    color: rgb(192, 192, 192)
+}
+.tabcontent {
+    white-space: nowrap;
+}
+
+.fadeIn {
+    opacity: 1;
+    animation: fadeIn 0.2s linear;
+}
+
+.tile {
+    /*border: 0.5rem solid rgb(0, 127, 255);
+    margin: 2%;*/
+    padding: 1rem;
+    border-radius: 5%;
+    display: inline-flex;
+    width: 20%;
+    min-width: 10rem;
+    flex-direction: column;
+    vertical-align: top;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.tileUpg {
+    width: 33%;
+    align-self: center;
+    height: 5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    border: 0.25rem solid;
+    border-radius: 20%;
+}
+.upgrade {
+    font-size: 12px;
+    min-width: 10rem;
+    width: 30%;
+    height: 8rem;
+    margin: 0;
+    white-space: initial;
+    vertical-align: top;
+}
+
+.time {
+    border-color: var(--time);
+}
+.time * {
+    color: var(--time);
+    transition-duration: 0.3s;
+}
+.time button.upgBuyable, .time button:hover, .time button:hover * {
+    background-color: var(--timeBack);
+}
+.time button.upgBought {
+    background-color: var(--time);
+    color: var(--timeBack)
+}
+
+
+.space {
+    border-color: var(--space);
+}
+.space * {
+    color: var(--space);
+    transition-duration: 0.3s;
+}
+.space button.upgBuyable, .space button:hover, .space button:hover *  {
+    background-color: var(--spaceBack);
+}
+.space button.upgBought {
+    background-color: var(--space);
+    color: var(--spaceBack)
+}
+.spacetable {
+    padding: 1rem 0;
+    table-layout: fixed
+}
+.spacetable * {
+    width: 33%;
+}
+.tableUpg {
+    width: 90%;
+    height: auto;
+    border: 0.25rem solid;
+    border-radius: 5%;
+}
+
+.spaceTime {
+    animation: fadeIn 0.5s linear, PBTrans 20s infinite ease-in-out; 
+}
+.spaceTime * {
+    animation: PBTrans 20s infinite ease-in-out;
+    transition-duration: 0.3s;
+}
+.spaceTime button.upgBuyable, .spaceTime button:hover, .spaceTime button:hover * {
+    animation: PBTrans 20s infinite ease-in-out, PBTransSoft 20s infinite ease-in-out; /* aww piss off, multiple animations */
+}
+.spaceTime button.upgBought {
+    animation: PBTrans 20s infinite ease-in-out, PBTransBought 20s infinite ease-in-out;
+}
+
+@keyframes PBTrans {
+    0%, 100% { border-color: var(--time); color: var(--time); }
+    50% { border-color: var(--space); color: var(--space); }
+}
+@keyframes PBTransSoft {
+    0%, 100% { background-color: var(--timeBack); }
+    50% { background-color: var(--spaceBack); }
+}
+@keyframes PBTransBought {
+    0%, 100% { background-color: var(--time); color: var(--spaceBack);}
+    50% { background-color: var(--space); color: var(--timeBack); }
+}
+
+.matter {
+    border-color: hsl(120, 100%, 25%);
+    color: hsl(120, 100%, 38%);
+    animation: fadeIn 0.2s linear
+}
+.matter * {
+    color:hsl(120, 100%, 38%);
+}
+
+
+
+
+
+span.important {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.option {
+    min-width: 15rem;
+    max-width: 30%;
+    height: 4rem;
+    padding: 0.5rem;
+    border: 0.25rem solid red;
+    border-radius: 10%
+}
