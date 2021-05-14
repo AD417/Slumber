@@ -25,6 +25,7 @@ let basePlayer = {
 
     testVar: "Anthios made this you forkin idiots"
 };
+let prod;
 
 function tab(tabID) {
     let i, tabcontent, tablinks;
@@ -60,6 +61,7 @@ function load() {
 }
 
 function setup() {
+    setupProduction()
     if (hasRested()) getEl("knowTab").style.display = "inline-block"
 }
 

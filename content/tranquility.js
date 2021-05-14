@@ -36,14 +36,14 @@ class Countdown {
         return Math.round(100 * this.timeLeft / this.timeStep) / 100; //Might need a function to turn the value into a timer value. 
     }
 }
-
-const prod = [
-    new Countdown("Tidy up the bookshelves", 0, 3000, 1),
-    new Countdown("Mop the floor", 1, 15000, 5),
-    new Countdown("Mow the lawn", 2, 60000, 25), 
-    new Countdown("Do some other stuff", 3, 99999999, 0) //I dunno tbh. 
-]
-
+function setupProduction() {
+    prod = [
+        new Countdown("Tidy up the bookshelves", 0, 3000, 1),
+        new Countdown("Mop the floor", 1, 15000, 5),
+        new Countdown("Mow the lawn", 2, 60000, 25), 
+        new Countdown("Do some other stuff", 3, 99999999, 0) //I dunno tbh. 
+    ];
+}
 function doTask(taskID) {
     prod[taskID].start();
 }
