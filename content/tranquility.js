@@ -15,7 +15,10 @@ class Countdown {
         player.tranProducers.timer[this.id] = time;
     }
     get timeLeft() {
-        return player.tranProducers.timer[this.id];
+        return player.tranProducers.timeLeft[this.id];
+    }
+    set timeLeft(time) {
+        player.tranProducers.timeLeft[this.id] = time;
     }
     stepTime(diff) { //diff is the number of ms since last tick
         if (!this.running) {
