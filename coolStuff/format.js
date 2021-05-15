@@ -21,3 +21,16 @@ function display(value) {
 function displayDecimal(value) {
     return formatNumber(value, 3, 0, -4) //aite tf is this
 }
+
+function toCTime(ms) {
+    const days = Math.floor(ms / (3600000 * 24)),
+        hours = Math.floor(ms % (3600000 * 24) / 3600000),
+        minutes = Math.floor((ms % 3600000) / 60000),
+        seconds = Math.floor((ms % 60000) / 1000),
+        msec = Math.floor(ms % 1000);
+    if (days) return `${days}d ${("0"+hours).slice(-2)}:${("0"+minutes).slice(-2)}:${("0"+seconds).slice(-2)}`
+    if (hours) return `${hours}:${("0"+minutes).slice(-2)}:${("0"+seconds).slice(-2)}`
+    if (minutes) return `${minutes}:${("0"+seconds).slice(-2)}`
+    if (seconds) return `0:${("0"+seconds).slice(-2)}.${("000"+msec).slice(-3)}`
+    return `0:00.${("000"+msec).slice(-3)}`
+}

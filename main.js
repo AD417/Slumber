@@ -131,12 +131,13 @@ function loop(diff) { //runs at 20TPS
         diff = Date.now() - player.lastTick;
         player.lastTick += diff;
     }
-    updateProduction(diff) //Dont worry about it.
-    showProduction()
+    updateProduction(diff); //Dont worry about it.
+    showProduction();
+    updateProductionProgress();
 
-    updateTranquility()
+    updateTranquility();
 
-    updateStatistics()
+    updateStatistics();
 }
 
 function updateStatistics() {

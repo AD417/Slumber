@@ -36,7 +36,7 @@ class Countdown {
         this.running = true;
     }
     getTimeLeft() {
-        return Math.round(100 * this.timeLeft / this.timeStep) / 100; //Might need a function to turn the value into a timer value. 
+        return Math.round(1000 * this.timeLeft / this.timeStep); //Might need a function to turn the value into a timer value. 
     }
 }
 function setupProduction() {
@@ -58,9 +58,22 @@ function updateProduction(diff) {
 }
 
 function showProduction() {
+    let item;
     for (let i in prod) {
         item = prod[i];
-        getEl("producer" + i).innerHTML = item.name + "<br>" + item.getTimeLeft() + " remaining";
+        getEl("producer" + i).innerHTML = item.name + "<br>" + toCTime(item.getTimeLeft()) + " remaining";
+    }
+}
+
+function updateProductionProgress() {
+    let item;
+    for (let i in prod) {
+        item = prod[i];
+        if (!item.running) {
+            getEl("prodBar" + i).style.width = "0px"
+        } else {
+            getEl("prodBar" + i).style.width = ((1 - (item.getTimeLeft() / item.timeMax)) * (4+getEl("producer" + i).clientWidth)) + "px"
+        }
     }
 }
 
