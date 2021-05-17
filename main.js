@@ -10,8 +10,8 @@ let basePlayer = {
 
     tran: D(0),
     tranProducers: {
-        timer: [1000, 1000, 1000, 1000],
         timeLeft: [3000, 15000, 60000, 99999999],
+        intLevel: [0, 0, 0, 0],
         payout: [1, 10, 1000, 10000],
     },
 
@@ -136,10 +136,11 @@ function loop(diff) { //runs at 20TPS
     updateProductionProgress();
 
     updateTranquility();
+    updateTimeCosts();
 
     updateStatistics();
 }
 
 function updateStatistics() {
-    getEl("playtime").innerHTML = display(Math.floor((player.lastTick - player.firstTick) / 1000));
+    getEl("playtime").innerHTML = toCTime(player.lastTick - player.firstTick);
 }

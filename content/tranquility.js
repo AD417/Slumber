@@ -1,4 +1,3 @@
-
 class Countdown {
     constructor(name, ID, time, reward) {
         this.name = name;
@@ -8,11 +7,17 @@ class Countdown {
         this.reward = reward;
         this.running = false; //might need to fix this in data. Somehow. 
     }
-    get timeStep() {
-        return player.tranProducers.timer[this.id];
+    get timeLevel() {
+        return player.tranProducers.intLevel[this.id];
     }
-    set timeStep(time) {
-        player.tranProducers.timer[this.id] = time;
+    set timeLevel(level) {
+        player.tranProducers.intLevel[this.id] = level;
+    }
+    get timeCost() {
+        return Decimal.pow(5, this.id + 1).times(Decimal.pow(2 + this.id, this.timeLevel));
+    }
+    get timeStep() {
+        return 1000 * Math.pow(1.25, this.timeLevel);
     }
     get timeLeft() {
         return player.tranProducers.timeLeft[this.id];
@@ -36,7 +41,10 @@ class Countdown {
         this.running = true;
     }
     getTimeLeft() {
-        return Math.round(1000 * this.timeLeft / this.timeStep); //Might need a function to turn the value into a timer value. 
+        return Math.round(1000 * this.timeLeft / this.timeStep);
+    }
+    getInvervalCost() {
+        return Decimal.pow(5, this.id + 1)
     }
 }
 function setupProduction() {
@@ -44,7 +52,7 @@ function setupProduction() {
         new Countdown("Tidy up the bookshelves", 0, 3000, 1),
         new Countdown("Mop the floor", 1, 15000, 5),
         new Countdown("Mow the lawn", 2, 60000, 25), 
-        new Countdown("Do some other stuff", 3, 99999999, 0) //I dunno tbh. 
+        new Countdown("Develop the game", 3, 99999999, 0) //I dunno tbh. 
     ];
 }
 function doTask(taskID) {
@@ -72,10 +80,28 @@ function updateProductionProgress() {
         if (!item.running) {
             getEl("prodBar" + i).style.width = "0px"
         } else {
-            getEl("prodBar" + i).style.width = ((1 - (item.getTimeLeft() / item.timeMax)) * (4+getEl("producer" + i).clientWidth)) + "px"
+            getEl("prodBar" + i).style.width = ((1 - (item.timeLeft / item.timeMax)) * (4+getEl("producer" + i).clientWidth)) + "px"
         }
     }
 }
+
+function upgTimeInterval(taskID) {
+    let item = prod[taskID];
+    if (item.timeCost.gt(player.tran)) return
+    player.tran = player.tran.minus(item.timeCost)
+    item.timeLevel++
+}
+
+function updateTimeCosts() {
+    for (let i in prod) {
+        item = prod[i]
+        getEl("timeCost" + i).innerHTML = "Decrease Interval by 20%<br>Cost: " + item.timeCost + " tranquility"
+    }
+}
+
+
+
+
 
 function updateTranquility() {
     getEl("tranquility").innerHTML = player.tran;
