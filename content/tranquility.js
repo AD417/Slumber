@@ -49,11 +49,15 @@ class Countdown {
         }
     }
     start() {
+        if (this.running) {
+            this.running = false;
+            return;
+        }
         let anyRunning = false
         for (let i in prod) {
-            anyRunning = (anyRunning || prod[i].running)
+            anyRunning = (anyRunning || prod[i].running);
         }
-        if (anyRunning) return
+        if (anyRunning) return;
         this.running = true;
     }
     getTimeLeft() {
