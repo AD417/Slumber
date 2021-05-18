@@ -12,7 +12,7 @@ let basePlayer = {
     tranProducers: {
         timeLeft: [3000, 15000, 60000, 99999999],
         intLevel: [0, 0, 0, 0],
-        payout: [1, 10, 1000, 10000],
+        payout: [0, 0, 0, 0],
     },
 
     know: D(0), 
@@ -137,7 +137,7 @@ function loop(diff) { //runs at 20TPS
     updateProductionProgress();
 
     updateTranquility();
-    updateTimeCosts();
+    updateTranCosts();
 
     updateStatistics();
 }

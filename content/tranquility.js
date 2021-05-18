@@ -16,6 +16,17 @@ class Countdown {
     get timeCost() {
         return Decimal.pow(3, this.id + 1).times(Decimal.pow(2, this.timeLevel));
     }
+
+    get payLevel() {
+        return player.tranProducers.payout[this.id];
+    }
+    set payLevel(level) {
+        player.tranProducers.payout[this.id] = level;
+    }
+    get payCost() {
+        return Decimal.pow(3, this.id + 1).times(Decimal.pow(2, this.payLevel));
+    }
+
     get timeStep() {
         return 1000 * Math.pow(1.25, this.timeLevel);
     }
@@ -34,7 +45,7 @@ class Countdown {
         if (this.timeLeft <= 0) {
             this.running = false;
             this.timeLeft = this.timeMax;
-            player.tran = player.tran.add(this.reward);
+            player.tran = player.tran.add(this.reward * (1 + this.payLevel));
         }
     }
     start() {
@@ -74,7 +85,7 @@ function showProduction() {
     let item;
     for (let i in prod) {
         item = prod[i];
-        getEl("producer" + i).innerHTML = item.name + "<br>" + toCTime(item.getTimeLeft()) + " remaining";
+        getEl("producer" + i).innerHTML = item.name + "<br> for " + (item.reward * (1 + item.payLevel)) + " tranquility <br>"+ toCTime(item.getTimeLeft()) + " remaining";
     }
 }
 
@@ -90,25 +101,34 @@ function updateProductionProgress() {
     }
 }
 
-function upgTimeInterval(taskID) {
-    let item = prod[taskID];
+function upgTranInterval(ID) {
+    const item = prod[ID];
     if (item.timeCost.gt(player.tran)) return;
     player.tran = player.tran.minus(item.timeCost);
     item.timeLevel = item.timeLevel + 1;
     checkTranStatus();
 }
 
-function updateTimeCosts() {
+function upgTranPay(ID) {
+    const item = prod[ID];
+    if (item.payCost.gt(player.tran)) return;
+    player.tran = player.tran.minus(item.payCost);
+    item.payLevel = item.payLevel + 1;
+    checkTranStatus();
+}
+
+function updateTranCosts() {
     for (let i in prod) {
         item = prod[i]
         getEl("timeCost" + i).innerHTML = "Decrease Interval for " + item.timeCost + " tranquility"
+        getEl("payCost" + i).innerHTML = "Increase gain for " + item.payCost + " tranquility"
     }
 }
 
 function checkTranStatus() {
     for (let i=0; i<3; i++) {
         console.log(`${i}: ${prod[i].timeLevel}`)
-        if (prod[i].timeLevel > 0) {
+        if (prod[i].timeLevel > 0 || prod[i].payLevel > 0) {
             getEl("tile" + (i+1)).style = "visibility: visibile";
         } else {
             getEl("tile" + (i+1)).style = "visibility: hidden";

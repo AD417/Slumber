@@ -1,13 +1,3 @@
-
-:root { /*these are the intended maximum values.*/
-    --hope: hsl(200, 100%, 50%);
-    --hopeBack: hsl(240, 100%, 20%);
-
-    --despair: hsl(270, 50%, 60%);
-    --despairBack: hsl(270, 100%, 20%);
-
-}
-
 * { 
     color: white;
     background-color: none;
@@ -17,9 +7,6 @@
     outline: none;
 }
 
-p {
-    text-shadow: 0 0 10px black;
-}
 body {
     overflow-x: auto;
     max-width: 100%;
@@ -105,34 +92,14 @@ button {
     position: relative;
 }
 
-.tileUpg {
-    width: 33%;
-    align-self: center;
-    height: 5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    margin: 1rem 0;
-    border: 0.25rem solid;
-    border-radius: 20%;
-}
 .upgrade {
-    font-size: 12px;
-    min-width: 10rem;
-    width: 30%;
-    height: 8rem;
-    margin: 0;
+    font-size: 16px;
+    height: 3.7rem;
+    margin: 0.15rem;
     white-space: initial;
     vertical-align: top;
 }
 
-.matter {
-    border-color: hsl(120, 100%, 25%);
-    color: hsl(120, 100%, 38%);
-    animation: fadeIn 0.2s linear
-}
-.matter * {
-    color:hsl(120, 100%, 38%);
-}
 
 span.important {
     font-size: 30px;
