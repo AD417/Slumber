@@ -19,7 +19,7 @@ function formatNumber(value, percision = 3, eMax = 5, eMin = -3) {
 }
 
 function display(value) {
-  return formatNumber(value, 3, 5, 0);
+  return formatNumber(value, 3, 5, 0); // We don't even use these...
 }
 
 function displayDecimal(value) {

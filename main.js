@@ -3,7 +3,7 @@
 /* eslint-disable line-comment-position */
 "use strict";
 // General Data
-let player, temporary;
+let player;
 const D = x => new Decimal(x); // I'm lazy. 
 const getEl = x => document.getElementById(x);
 const basePlayer = { 
@@ -59,7 +59,7 @@ function load() {
   }
   player = decimalify(player); // Give everything its code-mandated Break
   setup(); // Load in everything that is not updated on every tick. 
-  setupTemp();
+  // setupTemp();
   setInterval(loop, 50);
   setInterval(save, 10000);
 }
@@ -67,7 +67,7 @@ function load() {
 function setup() {
   setupProduction();
   checkTranStatus();
-  if (hasRested()) getEl("knowTab").style.display = "inline-block";
+  // If (hasRested()) getEl("knowTab").style.display = "inline-block";
 }
 
 function check(val, base) {
@@ -103,15 +103,6 @@ function newGame() {
   basePlayer.firstTick = Date.now();
   player = decimalify(JSON.parse(JSON.stringify(basePlayer)));
   setup();
-}
-
-function setupTemp() {
-  temporary = { // Do we need this? None of this is actually needed in a temporary variable. 
-    dSpace: D(0),
-
-    spaceTimeLastTick: D(0),
-    dSpaceTime: D(0),
-  };
 }
 
 function save() {
