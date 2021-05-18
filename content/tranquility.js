@@ -14,7 +14,7 @@ class Countdown {
         player.tranProducers.intLevel[this.id] = level;
     }
     get timeCost() {
-        return Decimal.pow(5, this.id + 1).times(Decimal.pow(2 + this.id, this.timeLevel));
+        return Decimal.pow(3, this.id + 1).times(Decimal.pow(2, this.timeLevel));
     }
     get timeStep() {
         return 1000 * Math.pow(1.25, this.timeLevel);
@@ -38,6 +38,11 @@ class Countdown {
         }
     }
     start() {
+        let anyRunning = false
+        for (let i in prod) {
+            anyRunning = (anyRunning || prod[i].running)
+        }
+        if (anyRunning) return
         this.running = true;
     }
     getTimeLeft() {
@@ -87,19 +92,29 @@ function updateProductionProgress() {
 
 function upgTimeInterval(taskID) {
     let item = prod[taskID];
-    if (item.timeCost.gt(player.tran)) return
-    player.tran = player.tran.minus(item.timeCost)
-    item.timeLevel++
+    if (item.timeCost.gt(player.tran)) return;
+    player.tran = player.tran.minus(item.timeCost);
+    item.timeLevel = item.timeLevel + 1;
+    checkTranStatus();
 }
 
 function updateTimeCosts() {
     for (let i in prod) {
         item = prod[i]
-        getEl("timeCost" + i).innerHTML = "Decrease Interval by 20%<br>Cost: " + item.timeCost + " tranquility"
+        getEl("timeCost" + i).innerHTML = "Decrease Interval for " + item.timeCost + " tranquility"
     }
 }
 
-
+function checkTranStatus() {
+    for (let i=0; i<3; i++) {
+        console.log(`${i}: ${prod[i].timeLevel}`)
+        if (prod[i].timeLevel > 0) {
+            getEl("tile" + (i+1)).style = "visibility: visibile";
+        } else {
+            getEl("tile" + (i+1)).style = "visibility: hidden";
+        }
+    }
+}
 
 
 

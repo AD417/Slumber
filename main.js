@@ -61,8 +61,9 @@ function load() {
 }
 
 function setup() {
-    setupProduction()
-    if (hasRested()) getEl("knowTab").style.display = "inline-block"
+    setupProduction();
+    checkTranStatus();
+    if (hasRested()) getEl("knowTab").style.display = "inline-block";
 }
 
 function check(val, base) {
