@@ -23,8 +23,13 @@ const basePlayer = {
   upgs: [0, 0, 0, 0, false, false, false, false],
 
   resets: {
-    sleep: 0,
+    study: 0,
     sleepTime: 0, // If this value reaches break levels, we fucked up.
+  },
+
+  stats: {
+    totalTran: D(0),
+    totalUpgs: D(0),
   },
 
   testVar: "Anthios made this you forkin idiots"
@@ -67,7 +72,7 @@ function load() {
 function setup() {
   setupProduction();
   checkTranStatus();
-  // If (hasRested()) getEl("knowTab").style.display = "inline-block";
+  if (hasStudied()) getEl("knowTab").style.display = "inline-block";
 }
 
 function check(val, base) {
@@ -136,9 +141,15 @@ function loop(diff) { // Runs at 20TPS
   updateTranquility();
   updateTranCosts();
 
+  updatePrestigeGain();
+  updateKnowledge();
+
   updateStatistics();
 }
 
 function updateStatistics() {
+  const stats = player.stats;
   getEl("playtime").innerHTML = toCTime(player.lastTick - player.firstTick);
+  getEl("totalTran").innerHTML = `A total of ${stats.totalTran} tranquility has been produced.`;
+  getEl("totalUpgs").innerHTML = `${stats.totalUpgs} upgrades have been bought.`;
 }

@@ -59,6 +59,7 @@ class Countdown {
       this.running = false;
       this.timeLeft = this.timeMax;
       player.tran = player.tran.add(this.reward * (1 + this.payLevel));
+      player.stats.totalTran = player.stats.totalTran.add(this.reward * (1 + this.payLevel));
     }
   }
 
@@ -131,6 +132,7 @@ function upgTranInterval(ID) {
   if (item.timeCost.gt(player.tran)) return;
   player.tran = player.tran.minus(item.timeCost);
   item.timeLevel += 1;
+  player.stats.totalUpgs++;
   checkTranStatus();
 }
 
@@ -139,12 +141,13 @@ function upgTranPay(ID) {
   if (item.payCost.gt(player.tran)) return;
   player.tran = player.tran.minus(item.payCost);
   item.payLevel += 1;
+  player.stats.totalUpgs++;
   checkTranStatus();
 }
 
 function updateTranCosts() {
   for (let i in prod) {
-    item = prod[i];
+    let item = prod[i];
     getEl(`timeCost${i}`).innerHTML = `Decrease Interval for ${item.timeCost} tranquility`;
     getEl(`payCost${i}`).innerHTML = `Increase gain for ${item.payCost} tranquility`;
   }

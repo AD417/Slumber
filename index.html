@@ -8,14 +8,14 @@
   <canvas id="canvas" style="margin: 0px; padding: 0px"></canvas>
 
   <div class="tabs">
-    <button id="tranquilTab" class="tab spaceTime" onclick="tab(1)" onload="tab(1)">Core</button>
-    <button id="knowTab" class="tab duality" onclick="tab(2)" style="display:none">Duality</button>
+    <button id="tranquilTab" class="tab tranquility" onclick="tab(1)">Tranquility</button>
+    <button id="knowTab" class="tab knowledge" onclick="tab(2)" style="display:none">Studies</button>
     <button class="tab fadeIn" onclick="tab(3)">Options</button>
     <button class="tab fadeIn" onclick="tab(4)">Statistics</button>
   </div>
 
   <div id="Main" class="tabcontent fadeIn">
-    <p>There is <span id="tranquility" class="important">0</span> Tranquility.</p>
+    <p>There is <span id="tranquility" class="important">X</span> Tranquility.</p>
     <div class="tileContainer">
       <div class="tile" id="tile0">
         <div class="prodContainer" onclick="doTask(0)">
@@ -58,12 +58,13 @@
         </div>
       </div>
       <div class="tile">
-        <button class="prodContainer">Prestige button.jpeg</button>
+        <button class="prodContainer" id="prestigeBtn" onclick="study()">Prestige button.jpeg</button>
       </div>
     </div>
   </div>
       
   <div id="Knowledge" class="tabcontent fadeIn" style="display:none">
+    <p>You have <span id="knowledge" class="important">X</span> Knowledge.</p>
     <p>Congrats, you beat the game, for now. Check back later!<br>
   </div>
 
@@ -79,16 +80,17 @@
     <p>
       STATISTICS
     </p>
-    <p> Here's a cat. Kinda useless, but fun!</p>
+    <p id="totalTran"></p>
+    <p id="totalUpgs"></p>
+    <p> Here's a cat. This thing's getting annoying, might remove it in a few updates.</p>
     <img src="Cat.png">
   </div>
 
   <script src="break_infinity.js"></script>
   <script src="main.js"></script>
   <script src="content/tranquility.js"></script>
+  <script src="content/knowledge.js"></script>
   <script src="coolStuff/format.js"></script>
   <script src="coolStuff/TimeSpan.js"></script>
-  <!--<script src="core/format.js"></script>
-  <script src="render/canvas.js"></script>-->
 </body>
 </html>
