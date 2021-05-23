@@ -1,8 +1,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>The Wizard's Slumber</title>
-  <link rel="stylesheet" href="coolStuff/styles.css">
+  <title>Arcane Intellect</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body onload = "load()">
   <canvas id="canvas" style="margin: 0px; padding: 0px"></canvas>
@@ -16,49 +16,49 @@
 
   <div id="Main" class="tabcontent fadeIn">
     <p>There is <span id="tranquility" class="important">X</span> Tranquility.</p>
-    <div class="tileContainer">
-      <div class="tile" id="tile0">
-        <div class="prodContainer" onclick="doTask(0)">
-          <div class="prodProgress" style="width: 1px" id="prodBar0"></div>
-          <button class="mainButton" id="producer0"></button>
+    <div class="c-tile-container">
+      <div class="c-tile" id="tile-0">
+        <div class="prod-container" onclick="doTask(0)">
+          <div class="prod-progress" style="width: 1px" id="prod-bar-0"></div>
+          <button class="prod-button" id="prod-0"></button>
         </div>
-        <div class="prodContainer">
-          <button class="mainButton upgrade" id="timeCost0" onclick="upgTranInterval(0)"></button>
-          <button class="mainButton upgrade" id="payCost0" onclick="upgTranPay(0)"></button>
-        </div>
-      </div>
-      <div class="tile" id="tile1">
-        <div class="prodContainer" onclick="doTask(1)">
-          <div class="prodProgress" style="width: 30px" id="prodBar1"></div>
-          <button class="mainButton" id="producer1"></button>
-        </div>
-        <div class="prodContainer">
-          <button class="mainButton upgrade" id="timeCost1" onclick="upgTranInterval(1)"></button>
-          <button class="mainButton upgrade" id="payCost1" onclick="upgTranPay(1)"></button>
+        <div class="prod-container">
+          <button class="prod-button prod-upgrade" id="cost-time-0" onclick="upgTranInterval(0)"></button>
+          <button class="prod-button prod-upgrade" id="cost-pay-0" onclick="upgTranPay(0)"></button>
         </div>
       </div>
-      <div class="tile" id="tile2">
-        <div class="prodContainer" onclick="doTask(2)">
-          <div class="prodProgress" style="width: 30px" id="prodBar2"></div>
-          <button class="mainButton" id="producer2"></button>
+      <div class="c-tile" id="tile-1">
+        <div class="prod-container" onclick="doTask(1)">
+          <div class="prod-progress" style="width: 1px" id="prod-bar-1"></div>
+          <button class="prod-button" id="prod-1"></button>
         </div>
-        <div class="prodContainer">
-          <button class="mainButton upgrade" id="timeCost2" onclick="upgTranInterval(2)"></button>
-          <button class="mainButton upgrade" id="payCost2" onclick="upgTranPay(2)"></button>
-        </div>
-      </div>
-      <div class="tile" id="tile3">
-        <div class="prodContainer" onclick="doTask(3)">
-          <div class="prodProgress" style="width: 30px" id="prodBar3"></div>
-          <button class="mainButton" id="producer3"></button>
-        </div>
-        <div class="prodContainer">
-          <button class="mainButton upgrade" id="timeCost3" onclick="upgTranInterval(3)"></button>
-          <button class="mainButton upgrade" id="payCost3" onclick="upgTranPay(3)"></button>
+        <div class="prod-container">
+          <button class="prod-button prod-upgrade" id="cost-time-1" onclick="upgTranInterval(1)"></button>
+          <button class="prod-button prod-upgrade" id="cost-pay-1" onclick="upgTranPay(1)"></button>
         </div>
       </div>
-      <div class="tile">
-        <button class="prodContainer" id="prestigeBtn" onclick="study()">Prestige button.jpeg</button>
+      <div class="c-tile" id="tile-2">
+        <div class="prod-container" onclick="doTask(2)">
+          <div class="prod-progress" style="width: 1px" id="prod-bar-2"></div>
+          <button class="prod-button" id="prod-2"></button>
+        </div>
+        <div class="prod-container">
+          <button class="prod-button prod-upgrade" id="cost-time-2" onclick="upgTranInterval(2)"></button>
+          <button class="prod-button prod-upgrade" id="cost-pay-2" onclick="upgTranPay(2)"></button>
+        </div>
+      </div>
+      <div class="c-tile" id="tile-3">
+        <div class="prod-container" onclick="doTask(3)">
+          <div class="prod-progress" style="width: 1px" id="prod-bar-3"></div>
+          <button class="prod-button" id="prod-3"></button>
+        </div>
+        <div class="prod-container">
+          <button class="prod-button prod-upgrade" id="cost-time-3" onclick="upgTranInterval(3)"></button>
+          <button class="prod-button prod-upgrade" id="cost-pay-3" onclick="upgTranPay(3)"></button>
+        </div>
+      </div>
+      <div class="c-tile">
+        <button class="prod-container" id="prestigeBtn" onclick="study()">Prestige button.jpeg</button>
       </div>
     </div>
   </div>
@@ -66,6 +66,7 @@
   <div id="Knowledge" class="tabcontent fadeIn" style="display:none">
     <p>You have <span id="knowledge" class="important">X</span> Knowledge.</p>
     <p>Congrats, you beat the game, for now. Check back later!<br>
+      <table id="upgrade-table"></table>
   </div>
 
   <div id="Options" class="tabcontent fadeIn">
@@ -87,10 +88,10 @@
   </div>
 
   <script src="break_infinity.js"></script>
-  <script src="main.js"></script>
-  <script src="content/tranquility.js"></script>
-  <script src="content/knowledge.js"></script>
-  <script src="coolStuff/format.js"></script>
-  <script src="coolStuff/TimeSpan.js"></script>
+  <script src="javascripts/general/main.js"></script>
+  <script src="javascripts/content/tranquility.js"></script>
+  <script src="javascripts/content/knowledge.js"></script>
+  <script src="javascripts/coolStuff/format.js"></script>
+  <script src="javascripts/coolStuff/TimeSpan.js"></script>
 </body>
 </html>

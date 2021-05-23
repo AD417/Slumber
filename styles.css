@@ -49,19 +49,19 @@ button {
     }
 }
 
-.tileContainer {
+.c-tileContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.tile {
+.c-tile {
     padding: 1rem;
     display: block;
     width: 100%;
     min-width: 40rem;
 }
 
-.prodContainer {
+.prod-container {
     display: inline-block;
     font-size: 18px;
     min-width: 10rem;
@@ -71,13 +71,13 @@ button {
     white-space: initial;
     vertical-align: top;
 }
-.prodProgress {
+.prod-progress {
     position: absolute;
     width: 20%;
     height: 8rem;
     background-color: rgba(0,128,0,0.3);
 }
-.mainButton {
+.prod-button {
     position: relative;
     font-size: 18px;
     width: 100%;
@@ -92,13 +92,25 @@ button {
     position: relative;
 }
 
-.upgrade {
+.prod-upgrade {
     font-size: 16px;
     height: 3.7rem;
     margin: 0.15rem;
     white-space: initial;
     vertical-align: top;
 }
+
+.upgrade-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.know-upgrade {
+    width: 100%;
+}
+
+
+
 
 
 span.important {

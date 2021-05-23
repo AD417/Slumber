@@ -72,6 +72,7 @@ function load() {
 function setup() {
   setupProduction();
   checkTranStatus();
+  drawUpgTable();
   if (hasStudied()) getEl("knowTab").style.display = "inline-block";
 }
 

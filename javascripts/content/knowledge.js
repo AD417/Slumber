@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable prefer-const */
 /* eslint-disable no-inline-comments */
 /* eslint-disable line-comment-position */
@@ -136,23 +137,32 @@ const upgrades = {
 
   u22: new Upgrade(
     "Recollection", 
-    "Boost bookshelf dusting based on time slept", 
-    () => Math.sqrt(player.reset.sleepTime), 1, 5)
+    "Boost bookshelf dusting based on time spent studying", 
+    () => Math.sqrt(player.reset.studyTime), 1, 5)
 };
 
-const dUSizes = { x: 4, y: 2 };
-// Function drawDualityTable(reset = false) { // Random garbage for drawing a table, do NOT call this function.
-// const table = document.getElementById("upgs");
-// for (let r = 1; r <= dUSizes.y; r++) {
-//     const row = table.insertRow(r - 1);
-//     for (let c = 1; c <= dUSizes.x; c++) {
-//       const col = row.insertCell(c - 1);
-//       const id = (r * 10 + c);
-// eslint-disable-next-line max-len
-//       col.innerHTML = `<button id='pu${id}' class='infinistorebtn1' onclick='buyPU(${id},${r < 2})'>${typeof(puDescs[id]) === "function" ? `<span id='pud${id}'></span>` : puDescs[id] || "???"}${puMults[id] ? `<br>Currently: <span id='pue${id}'></span>` : ""}<br><span id='puc${id}'></span></button>`;
-//     }
-// }
-// } 
+const tableSize = { x: 5, y: 5 };
+function drawUpgTable() { // Random garbage for drawing a table, do NOT call this function.
+  const table = getEl("upgrade-table");
+  table.innerHTML = `<colgroup><col span="${tableSize.x}" style="width:${100 / tableSize.x}%"></colgroup>`;
+  for (let r = 1; r <= tableSize.y; r++) {
+    const row = table.insertRow(r - 1);
+    for (let c = 1; c <= tableSize.x; c++) {
+      const col = row.insertCell(c - 1);
+      const id = `u${r}${c}`;
+      try {
+        col.innerHTML = 
+          `<button id='upgrade-base-${id}' class='know-upgrade' onclick='buyUpg(${id},${r < 2})'>
+          ${typeof(upgrades[id].desc) === "function" ? `<span id='upgrade-desc-${id}'></span>` : upgrades[id].desc || "???"}
+          ${upgrades[id].effect ? `<br>Currently: <span id='upgrade-effect-${id}'></span>` : ""}<br>
+          <span id='upgrade-cost-${id}'></span></button>`;
+      } catch (e) {
+        col.innerHTML = 
+          `<button id='upgrade-base-${id}' class='upgrade'> ??? </button>`;
+      }
+    }
+  }
+} 
 
 
 const testVar = new Upgrade("I can do itttt", Decimal.pow(2, 87865), D(50));

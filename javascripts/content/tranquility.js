@@ -107,7 +107,7 @@ function showProduction() {
   let item;
   for (let i in prod) {
     item = prod[i];
-    getEl(`producer${i}`).innerHTML = 
+    getEl(`prod-${i}`).innerHTML = 
       `${item.name}<br>
       for ${item.reward * (1 + item.payLevel)} tranquility <br>
       ${toCTime(item.getTimeLeft())} remaining`;
@@ -119,10 +119,10 @@ function updateProductionProgress() {
   for (let i in prod) {
     item = prod[i];
     if (item.running) {
-      getEl(`prodBar${i}`).style.width = 
-        `${(1 - (item.timeLeft / item.timeMax)) * (4 + getEl(`producer${i}`).clientWidth)}px`;
+      getEl(`prod-bar-${i}`).style.width = 
+        `${(1 - (item.timeLeft / item.timeMax)) * (4 + getEl(`prod-${i}`).clientWidth)}px`;
     } else {
-      getEl(`prodBar${i}`).style.width = "0px";
+      getEl(`prod-bar-${i}`).style.width = "0px";
     }
   }
 }
@@ -148,17 +148,17 @@ function upgTranPay(ID) {
 function updateTranCosts() {
   for (let i in prod) {
     let item = prod[i];
-    getEl(`timeCost${i}`).innerHTML = `Decrease Interval for ${item.timeCost} tranquility`;
-    getEl(`payCost${i}`).innerHTML = `Increase gain for ${item.payCost} tranquility`;
+    getEl(`cost-time-${i}`).innerHTML = `Decrease Interval for ${item.timeCost} tranquility`;
+    getEl(`cost-pay-${i}`).innerHTML = `Increase gain for ${item.payCost} tranquility`;
   }
 }
 
 function checkTranStatus() {
   for (let i = 0; i < 3; i++) {
-    if (i < 1 && (prod[i].timeLevel > 0 || prod[i].payLevel > 0)) {
-      getEl(`tile${i + 1}`).style = "visibility: visibile";
+    if (i < 2 && (prod[i].timeLevel > 0 || prod[i].payLevel > 0)) {
+      getEl(`tile-${i + 1}`).style = "visibility: visibile";
     } else {
-      getEl(`tile${i + 1}`).style = "visibility: hidden";
+      getEl(`tile-${i + 1}`).style = "visibility: hidden";
     }
   }
 }
